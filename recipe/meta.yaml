@@ -11,15 +11,15 @@ source:
 
 build:
   noarch: python
-  number: 1
+  number: 2
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
     - pip
-    - python >=3.5
+    - python {{ python_min }}
   run:
-    - python >=3.5
+    - python >={{ python_min }}
     - numpy
     - seaborn >=0.9.0
     - matplotlib-base
@@ -27,6 +27,8 @@ requirements:
     - scipy >=1.1.0
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - statannot
 
